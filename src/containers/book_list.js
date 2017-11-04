@@ -1,7 +1,7 @@
 import React,{Component} from "react";
 import {connect} from "react-redux";
 import {selectBook} from "../actions/index";
-import {bindActionCreator} from "react-redux";
+import {bindActionCreators} from "redux";
 class BookList extends Component{
     renderList(){
         return this.props.books.map(book=>{
@@ -16,7 +16,7 @@ class BookList extends Component{
                 {this.renderList()}
             </ul>
         )
-    }
+    } 
 }
 function mapStateToProps(state)
 {
@@ -26,9 +26,9 @@ function mapStateToProps(state)
 }
 function mapDispatchToProps(dispatch)
 {
-    //value:call action creator,keys:props:selectBooks
+    //value:call action creator{defined in actions},keys:props:selectBook
     //return props to BookList
-    //whenever selectbppk is called, should be passed to our reducers
-    return bindActionCreator({selectBook:selectBook},dispatch)
+    //whenever selectbook is called, should be passed to our reducers
+    return bindActionCreators({selectBook:selectBook},dispatch)
 }
 export default connect(mapStateToProps,mapDispatchToProps)(BookList);
